@@ -22,7 +22,7 @@ export function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
               className="w-full bg-surface border border-primary/20 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
             >
               <option value="Hanafi">Hanafi</option>
-              <option value="Shafi'i">Shafi'i</option>
+              <option value="Shafi'i">Shafi&apos;i</option>
               <option value="Maliki">Maliki</option>
               <option value="Hanbali">Hanbali</option>
               <option value="All">Show All Rulings</option>

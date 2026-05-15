@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle, BookOpen, Shield, Globe } from "lucide-react";
-import { DISCLAIMER, SUGGESTION_CHIPS } from "@/lib/constants";
+import { DISCLAIMER } from "@/lib/constants";
 import { Icons } from "@/components/ui/Icons";
 
 export default function Home() {

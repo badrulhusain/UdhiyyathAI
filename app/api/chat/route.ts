@@ -16,7 +16,11 @@ export async function POST(request: NextRequest) {
     }
 
     const validMessages = body.messages.filter(
-      (m) => m.role === "user" || m.role === "assistant"
+      (m) =>
+        (m.role === "user" || m.role === "assistant") &&
+        typeof m.content === "string" &&
+        m.content.trim().length > 0 &&
+        m.content.length <= 4000
     );
 
     if (validMessages.length === 0) {
