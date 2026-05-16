@@ -1,3 +1,5 @@
+"use client";
+
 import { BookOpen, HelpCircle, Clock, HeartHandshake, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
