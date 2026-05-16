@@ -38,7 +38,13 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
   };
 
   return (
-    <div className="flex items-end gap-2 p-4 bg-white border-t border-gray-100">
+    <div
+      className="flex items-end gap-3 px-4 py-4"
+      style={{
+        background: "linear-gradient(to top, #fffdf7, #f7f3eb)",
+        borderTop: "1px solid rgba(229,231,235,0.5)",
+      }}
+    >
       <textarea
         ref={textareaRef}
         value={value}
@@ -48,8 +54,9 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
         placeholder="Ask about Udhiyyah rulings..."
         rows={1}
         className={cn(
-          "flex-1 resize-none rounded-[2rem] border border-border bg-white px-5 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 max-h-[120px] overflow-y-auto shadow-sm",
-          disabled && "opacity-60 cursor-not-allowed"
+          "flex-1 resize-none text-sm text-foreground placeholder:text-muted-foreground/60",
+          "px-5 py-3.5 max-h-[120px] overflow-y-auto transition-all duration-200 clay-input",
+          disabled && "opacity-50 cursor-not-allowed"
         )}
       />
       <button
@@ -57,13 +64,18 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
         disabled={disabled || !value.trim()}
         aria-label="Send message"
         className={cn(
-          "flex-shrink-0 w-11 h-11 rounded-full bg-primary flex items-center justify-center shadow-md transition-all duration-200",
+          "flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200",
           disabled || !value.trim()
-            ? "opacity-50 cursor-not-allowed"
-            : "hover:bg-primary-dark active:scale-95"
+            ? "bg-muted text-muted-foreground cursor-not-allowed opacity-50"
+            : "clay-btn bg-primary text-white"
         )}
+        style={
+          !disabled && value.trim()
+            ? { boxShadow: "0 4px 16px rgba(29,158,117,0.45), inset 0 1px 0 rgba(255,255,255,0.2)" }
+            : undefined
+        }
       >
-        <Icons.Send className="w-5 h-5 text-white ml-0.5" />
+        <Icons.Send className="w-4.5 h-4.5 ml-0.5" />
       </button>
     </div>
   );

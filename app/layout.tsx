@@ -1,13 +1,33 @@
 import type { Metadata } from "next";
+import { Inter, Plus_Jakarta_Sans, Amiri } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
+const amiri = Amiri({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-amiri",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Mufti AI — Udhiyyah Fatwa Chatbot",
+  title: "Udhiyyah AI — Islamic Qurbani Guide",
   description:
     "Get instant, scholar-informed answers on Udhiyyah (Qurbani) rulings based on the four major madhabs.",
   keywords: ["Udhiyyah", "Qurbani", "Islamic fatwa", "Eid al-Adha", "Islamic rulings"],
   openGraph: {
-    title: "Mufti AI — Your Udhiyyah Guide",
+    title: "Udhiyyah AI — Your Qurbani Guide",
     description:
       "AI-powered chatbot for Udhiyyah (Qurbani) rulings — Hanafi, Maliki, Shafi'i, Hanbali.",
     type: "website",
@@ -20,8 +40,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased bg-background text-gray-900">
+    <html
+      lang="en"
+      className={`${inter.variable} ${plusJakarta.variable} ${amiri.variable}`}
+    >
+      <body className="font-sans antialiased bg-background text-foreground">
         {children}
       </body>
     </html>

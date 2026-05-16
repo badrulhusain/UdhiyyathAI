@@ -1,37 +1,31 @@
 "use client";
 
-function BotAvatar() {
-  return (
-    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="1.5"
-        className="w-4 h-4"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 2C8 2 5 5 5 8c0 1.5.5 2.8 1.3 3.8L5 15h14l-1.3-3.2C18.5 10.8 19 9.5 19 8c0-3-3-6-7-6z"
-        />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 15v4h6v-4" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7 19h10" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v2" />
-      </svg>
-    </div>
-  );
-}
+import { Icons } from "@/components/ui/Icons";
 
 export function TypingIndicator() {
   return (
-    <div className="flex gap-3 w-full flex-row">
-      <BotAvatar />
-      <div className="bg-white border border-gray-100 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm">
-        <div className="flex items-center gap-1 h-5">
-          <span className="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:-0.3s]" />
-          <span className="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:-0.15s]" />
-          <span className="w-2 h-2 rounded-full bg-primary animate-bounce" />
+    <div className="flex gap-2.5 w-full flex-row">
+      <div
+        className="flex-shrink-0 w-8 h-8 rounded-[0.625rem] flex items-center justify-center"
+        style={{
+          background: "linear-gradient(135deg, #1D9E75, #147556)",
+          boxShadow: "0 3px 12px rgba(29,158,117,0.35), inset 0 1px 0 rgba(255,255,255,0.2)",
+        }}
+      >
+        <Icons.Leaf className="w-4 h-4 text-white" />
+      </div>
+
+      <div
+        className="rounded-[1.25rem] rounded-bl-[0.375rem] px-5 py-3.5"
+        style={{
+          background: "linear-gradient(135deg, #ffffff, #f7f3eb)",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.9)",
+        }}
+      >
+        <div className="flex items-center gap-1.5 h-5">
+          <span className="w-2 h-2 rounded-full bg-primary dot-bounce dot-bounce-1" />
+          <span className="w-2 h-2 rounded-full bg-primary dot-bounce dot-bounce-2" />
+          <span className="w-2 h-2 rounded-full bg-primary dot-bounce dot-bounce-3" />
         </div>
       </div>
     </div>

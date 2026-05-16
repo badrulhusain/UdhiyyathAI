@@ -4,37 +4,49 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Icons } from "@/components/ui/Icons";
 import { useState } from "react";
-// import { SettingsModal } from "@/components/chat/SettingsModal";
-import {SettingsModal} from "../chat/SettingsModal";
+import { SettingsModal } from "../chat/SettingsModal";
+
 export function Header() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
     <>
-      <header className="flex items-center justify-between px-4 py-3 bg-primary shadow-sm flex-shrink-0 relative overflow-hidden">
-        {/* Optional subtle arabesque pattern watermark at low opacity */}
-        <div className="absolute inset-0 bg-arabesque opacity-5 pointer-events-none" />
-        
+      <header
+        className="flex items-center justify-between px-4 py-3 flex-shrink-0 relative overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #1D9E75, #147556)",
+          boxShadow: "0 4px 20px rgba(29,158,117,0.3), 0 1px 0 rgba(255,255,255,0.1)",
+        }}
+      >
+        <div className="absolute inset-0 bg-arabesque opacity-[0.06] pointer-events-none" />
+
         <div className="flex items-center gap-3 relative z-10">
           <Link
             href="/"
-            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors mr-2"
             aria-label="Back to home"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
           </Link>
 
-          <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-            <Icons.Crescent className="w-6 h-6 text-white" />
+          <div
+            className="w-9 h-9 rounded-[0.75rem] flex items-center justify-center"
+            style={{
+              background: "rgba(255,255,255,0.18)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.3)",
+            }}
+          >
+            <Icons.Crescent className="w-5 h-5 text-white" />
           </div>
+
           <div>
-            <h1 className="text-white font-heading font-bold text-lg leading-tight">
+            <h1 className="text-white font-heading font-bold text-base leading-tight">
               Udhiyyah AI
             </h1>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              <p className="text-white/80 text-xs font-medium tracking-wide">
-                Online · Islamic guidance assistant
+              <span className="w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse" />
+              <p className="text-white/70 text-[11px] font-medium tracking-wide">
+                Online · Islamic guidance
               </p>
             </div>
           </div>
@@ -42,11 +54,10 @@ export function Header() {
 
         <button
           onClick={() => setIsSettingsOpen(true)}
-          className="text-white/80 hover:text-white transition-colors relative z-10 p-2"
           aria-label="Settings"
-          title="Settings"
+          className="relative z-10 w-9 h-9 rounded-full text-white/70 hover:text-white hover:bg-white/10 flex items-center justify-center transition-all duration-200"
         >
-          <Icons.Settings className="w-5 h-5" />
+          <Icons.Settings className="w-4.5 h-4.5" />
         </button>
       </header>
 

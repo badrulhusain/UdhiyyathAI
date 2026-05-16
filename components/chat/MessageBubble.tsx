@@ -11,7 +11,13 @@ interface MessageBubbleProps {
 
 function BotAvatar() {
   return (
-    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm mt-1">
+    <div
+      className="flex-shrink-0 w-8 h-8 rounded-[0.625rem] flex items-center justify-center mt-1"
+      style={{
+        background: "linear-gradient(135deg, #1D9E75, #147556)",
+        boxShadow: "0 3px 12px rgba(29,158,117,0.35), inset 0 1px 0 rgba(255,255,255,0.2)",
+      }}
+    >
       <Icons.Leaf className="w-4 h-4 text-white" />
     </div>
   );
@@ -23,7 +29,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
   return (
     <div
       className={cn(
-        "flex gap-3 w-full animate-fade-in-up",
+        "flex gap-2.5 w-full animate-fade-in-up",
         isUser ? "flex-row-reverse" : "flex-row"
       )}
     >
@@ -31,16 +37,14 @@ export function MessageBubble({ message }: MessageBubbleProps) {
 
       <div
         className={cn(
-          "max-w-[85%] px-5 py-3.5 shadow-sm",
+          "max-w-[82%] px-4 py-3 rounded-[1.25rem]",
           isUser
-            ? "bg-primary text-white rounded-2xl rounded-br-none"
-            : "bg-white border border-border text-foreground rounded-2xl rounded-bl-none"
+            ? "rounded-br-[0.375rem] bubble-user text-white"
+            : "rounded-bl-[0.375rem] bubble-bot text-foreground"
         )}
       >
         {isUser ? (
-          <p className="text-sm leading-relaxed whitespace-pre-wrap">
-            {message.content}
-          </p>
+          <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
         ) : (
           <div className="text-sm leading-relaxed prose prose-sm max-w-none prose-headings:text-foreground prose-headings:font-bold prose-headings:font-heading prose-p:text-foreground/90 prose-strong:text-foreground prose-li:text-foreground/90 prose-a:text-primary prose-em:text-accent prose-em:italic">
             <ReactMarkdown>{message.content}</ReactMarkdown>
@@ -49,7 +53,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
         <p
           className={cn(
             "text-[10px] mt-2 select-none",
-            isUser ? "text-white/70 text-right" : "text-muted-foreground"
+            isUser ? "text-white/60 text-right" : "text-muted-foreground"
           )}
         >
           {message.timestamp.toLocaleTimeString([], {

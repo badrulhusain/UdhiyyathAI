@@ -1,113 +1,134 @@
 import Link from "next/link";
-import { ArrowLeft, BookOpen, Globe, Shield, MessageCircle } from "lucide-react";
+import { ArrowLeft, BookOpen, Globe, Shield, MessageCircle, ScrollText, CheckCircle2 } from "lucide-react";
+import { Icons } from "@/components/ui/Icons";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About — Mufti AI",
-  description: "Learn about Mufti AI, its purpose, scope, and disclaimers.",
+  title: "About — Udhiyyah AI",
+  description: "Learn about Udhiyyah AI, its purpose, scope, and disclaimers.",
 };
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-3xl mx-auto px-6 py-10">
-        {/* Back button */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Home
-        </Link>
+      {/* Hero */}
+      <div className="relative hero-gradient pb-24 overflow-hidden">
+        <div className="absolute inset-0 bg-arabesque opacity-[0.07] pointer-events-none" />
+        <div className="absolute top-8 right-8 w-32 h-32 rounded-full bg-white/5 blur-2xl pointer-events-none" />
 
-        {/* Header */}
-        <div className="bg-primary rounded-2xl p-8 text-white mb-8">
-          <h1 className="text-3xl font-heading font-bold mb-2">About Mufti AI</h1>
-          <p className="text-white/80 font-arabic text-lg mb-1">
-            بسم الله الرحمن الرحيم
+        <div className="relative z-10 max-w-3xl mx-auto px-6 pt-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-10 text-sm"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
+
+          <div className="flex items-center gap-4 mb-6">
+            <div
+              className="w-16 h-16 rounded-[1.25rem] flex items-center justify-center"
+              style={{
+                background: "rgba(255,255,255,0.15)",
+                backdropFilter: "blur(16px)",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.3)",
+              }}
+            >
+              <Icons.Mosque className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <span className="font-arabic text-lg text-white/80 block">بسم الله الرحمن الرحيم</span>
+              <h1 className="text-3xl font-heading font-bold text-white mt-1">About Udhiyyah AI</h1>
+            </div>
+          </div>
+          <p className="text-white/75 max-w-xl leading-relaxed">
+            Your dedicated AI guide for Udhiyyah (Qurbani) rulings, built to help the global ummah access scholarly knowledge.
           </p>
-          <p className="text-white/90">
-            Your dedicated AI guide for Udhiyyah (Qurbani) rulings
+        </div>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 -mt-12 pb-20 space-y-5">
+
+        {/* What is it */}
+        <div className="clay-card p-7">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"
+              style={{ boxShadow: "0 2px 8px rgba(29,158,117,0.12), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+              <BookOpen className="w-5 h-5 text-primary" />
+            </div>
+            <h2 className="text-lg font-heading font-bold text-foreground">What is Udhiyyah AI?</h2>
+          </div>
+          <p className="text-muted-foreground leading-relaxed mb-3 text-sm">
+            Udhiyyah AI is an educational chatbot specializing exclusively in{" "}
+            <strong className="text-foreground">Udhiyyah (Qurbani)</strong> — the Islamic sacrifice performed on Eid al-Adha. It was built to help Muslims quickly access reliable information about the rulings of Udhiyyah without needing to search through lengthy books.
+          </p>
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            The chatbot draws on classical Islamic scholarship and presents rulings from the four major Sunni madhabs:{" "}
+            <strong className="text-foreground">Hanafi, Maliki, Shafi&apos;i, and Hanbali</strong>.
           </p>
         </div>
 
-        {/* What is Mufti AI */}
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 bg-primary-light rounded-lg flex items-center justify-center">
-              <BookOpen className="w-4 h-4 text-primary" />
-            </div>
-            <h2 className="text-lg font-heading font-semibold text-gray-900">
-              What is Mufti AI?
-            </h2>
-          </div>
-          <p className="text-gray-700 leading-relaxed mb-3">
-            Mufti AI is an AI-powered educational chatbot specializing exclusively in{" "}
-            <strong>Udhiyyah (Qurbani)</strong> — the Islamic sacrifice performed on Eid
-            al-Adha. It was built to help Muslims quickly access reliable information about
-            the rulings of Udhiyyah without needing to search through lengthy books or wait
-            for scholar availability.
-          </p>
-          <p className="text-gray-700 leading-relaxed">
-            The chatbot draws on classical Islamic scholarship and presents rulings from the
-            four major Sunni madhabs: <strong>Hanafi, Maliki, Shafi&apos;i, and Hanbali</strong>.
-          </p>
-        </section>
-
         {/* Disclaimer */}
-        <section className="bg-amber-50 rounded-2xl border border-amber-200 p-6 mb-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
-              <Shield className="w-4 h-4 text-amber-700" />
+        <div
+          className="rounded-[1.5rem] p-7"
+          style={{
+            background: "linear-gradient(135deg, #fffbeb, #fef3c7)",
+            boxShadow: "0 8px 32px rgba(212,168,83,0.18), 0 2px 8px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)",
+          }}
+        >
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-xl bg-gold/20 flex items-center justify-center">
+              <Shield className="w-5 h-5 text-gold-dark" />
             </div>
-            <h2 className="text-lg font-heading font-semibold text-amber-900">
-              Important Disclaimer
-            </h2>
+            <h2 className="text-lg font-heading font-bold text-amber-900">Important Disclaimer</h2>
           </div>
-          <p className="text-amber-800 leading-relaxed mb-3">
-            Mufti AI is an <strong>educational tool only</strong>. It does not issue
-            official fatwas (binding religious verdicts). The information provided is
-            based on classical scholarly texts and is intended to help you understand
-            general rulings.
+          <p className="text-amber-800 leading-relaxed mb-3 text-sm">
+            Udhiyyah AI is an <strong>educational tool only</strong>. It does not issue official fatwas (binding religious verdicts). The information provided is based on classical scholarly texts for general understanding.
           </p>
-          <p className="text-amber-800 leading-relaxed">
-            For official religious rulings specific to your situation, please consult a
-            qualified Islamic scholar or mufti in your local community.
+          <p className="text-amber-800 leading-relaxed text-sm">
+            For official religious rulings specific to your situation, please consult a qualified Islamic scholar or mufti in your local community.
           </p>
-        </section>
+        </div>
 
         {/* Languages */}
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 bg-primary-light rounded-lg flex items-center justify-center">
-              <Globe className="w-4 h-4 text-primary" />
+        <div className="clay-card p-7">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-xl bg-sage/20 flex items-center justify-center"
+              style={{ boxShadow: "0 2px 8px rgba(141,181,160,0.2), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+              <Globe className="w-5 h-5 text-sage" />
             </div>
-            <h2 className="text-lg font-heading font-semibold text-gray-900">
-              Supported Languages
-            </h2>
+            <h2 className="text-lg font-heading font-bold text-foreground">Supported Languages</h2>
           </div>
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { lang: "English", note: "Default language" },
-              { lang: "Arabic (عربي)", note: "Full support with Islamic terminology" },
-              { lang: "Malayalam (മലയാളം)", note: "Regional support" },
-            ].map(({ lang, note }) => (
-              <div key={lang} className="bg-gray-50 rounded-xl p-4">
-                <p className="font-semibold text-gray-900 text-sm">{lang}</p>
-                <p className="text-xs text-gray-500 mt-1">{note}</p>
+              { lang: "English", note: "Default language", flag: "🇬🇧" },
+              { lang: "Arabic (عربي)", note: "Full Islamic terminology", flag: "🌙" },
+              { lang: "Malayalam (മലയാളം)", note: "Regional support", flag: "🌿" },
+            ].map(({ lang, note, flag }) => (
+              <div
+                key={lang}
+                className="rounded-[1rem] p-4 bg-gradient-to-br from-background to-sand/40"
+                style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8)" }}
+              >
+                <span className="text-2xl block mb-2">{flag}</span>
+                <p className="font-semibold text-foreground text-sm">{lang}</p>
+                <p className="text-xs text-muted-foreground mt-1">{note}</p>
               </div>
             ))}
           </div>
-        </section>
+        </div>
 
-        {/* Topics covered */}
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-8">
-          <h2 className="text-lg font-heading font-semibold text-gray-900 mb-4">
-            Topics Covered
-          </h2>
-          <ul className="space-y-2 text-sm text-gray-700">
+        {/* Topics */}
+        <div className="clay-card p-7">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <ScrollText className="w-5 h-5 text-primary" />
+            </div>
+            <h2 className="text-lg font-heading font-bold text-foreground">Topics Covered</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-2">
             {[
-              "Who is obligated or recommended to perform Udhiyyah",
+              "Who is obligated to perform Udhiyyah",
               "Valid and invalid animals for sacrifice",
               "Age and health conditions of the animal",
               "Correct time window (days of Eid al-Adha)",
@@ -115,24 +136,24 @@ export default function AboutPage() {
               "Distribution of meat (thirds rule)",
               "Udhiyyah on behalf of deceased relatives",
               "Online / virtual Udhiyyah services",
-              "Hair and nail cutting restrictions in Dhul Hijjah",
+              "Hair and nail cutting in Dhul Hijjah",
               "Financial eligibility (nisab threshold)",
               "Combining Aqiqah with Udhiyyah",
               "Using the skin, bones, and by-products",
             ].map((topic) => (
-              <li key={topic} className="flex items-start gap-2">
-                <span className="text-primary mt-0.5">✓</span>
+              <div key={topic} className="flex items-start gap-2.5 text-sm text-muted-foreground py-1">
+                <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <span>{topic}</span>
-              </li>
+              </div>
             ))}
-          </ul>
-        </section>
+          </div>
+        </div>
 
         {/* CTA */}
-        <div className="text-center">
+        <div className="text-center pt-4">
           <Link
             href="/chat"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-4 rounded-2xl shadow-md transition-all duration-200 hover:scale-105 active:scale-100"
+            className="clay-btn bg-primary text-white px-10 py-4 text-base inline-flex"
           >
             <MessageCircle className="w-5 h-5" />
             Start Chatting
