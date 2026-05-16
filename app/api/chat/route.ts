@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { groq } from "@/lib/anthropic";
+import { callOpenRouter } from "@/lib/anthropic";
 import { SYSTEM_PROMPT } from "@/lib/system-prompt";
-import { MODEL, MAX_TOKENS, TEMPERATURE } from "@/lib/constants";
 import { ChatRequest } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
@@ -30,36 +29,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const completion = await groq.chat.completions.create({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      temperature: TEMPERATURE,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...validMessages.map((m) => ({
-          role: m.role as "user" | "assistant",
-          content: m.content,
-        })),
-      ],
-    });
+    const messages = [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...validMessages.map((m) => ({ role: m.role, content: m.content })),
+    ];
 
-    const text = completion.choices[0]?.message?.content ?? "";
+    const stream = await callOpenRouter(messages);
 
-    return NextResponse.json({
-      role: "assistant",
-      content: text,
+    return new Response(stream, {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "X-Content-Type-Options": "nosniff",
+      },
     });
   } catch (error: unknown) {
     console.error("Chat API error:", error);
 
-    if (error && typeof error === "object" && "status" in error) {
-      const apiError = error as { status: number };
-      if (apiError.status === 429) {
-        return NextResponse.json(
-          { error: "Please wait a moment and try again." },
-          { status: 429 }
-        );
-      }
+    if (error instanceof Error && error.message.startsWith("All models rate limited")) {
+      return NextResponse.json(
+        { error: "All models are currently rate limited. Please wait a moment and try again." },
+        { status: 429 }
+      );
     }
 
     return NextResponse.json(

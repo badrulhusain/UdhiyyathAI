@@ -17,4 +17,4 @@ export const DISCLAIMER =
 
 export const MAX_TOKENS = 1024;
 export const TEMPERATURE = 0.3;
-export const MODEL = "llama-3.3-70b-versatile";
+export const MODEL = "meta-llama/llama-3.2-3b-instruct:free";

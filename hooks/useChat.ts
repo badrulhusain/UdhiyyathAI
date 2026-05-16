@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import { Message, ChatResponse } from "@/lib/types";
+import { Message } from "@/lib/types";
 
 const MAX_HISTORY_MESSAGES = 20;
 
@@ -32,15 +32,9 @@ export function useChat() {
     setError(null);
 
     try {
-      // Use functional update to read current messages without stale closure
-      let history: { role: string; content: string }[] = [];
-      setMessages((prev) => {
-        const all = [...prev];
-        history = all
-          .slice(-MAX_HISTORY_MESSAGES)
-          .map((m) => ({ role: m.role, content: m.content }));
-        return all;
-      });
+      const history = [...messages, userMessage]
+        .slice(-MAX_HISTORY_MESSAGES)
+        .map((m) => ({ role: m.role, content: m.content }));
 
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -49,20 +43,30 @@ export function useChat() {
         signal: controller.signal,
       });
 
-      const data: ChatResponse & { error?: string } = await response.json();
-
       if (!response.ok) {
+        const data = await response.json();
         throw new Error(data.error ?? "Something went wrong. Please try again.");
       }
 
-      const assistantMessage: Message = {
-        id: generateId(),
-        role: "assistant",
-        content: data.content,
-        timestamp: new Date(),
-      };
+      // Start streaming — add empty assistant message immediately
+      const msgId = generateId();
+      setMessages((prev) => [
+        ...prev,
+        { id: msgId, role: "assistant", content: "", timestamp: new Date() },
+      ]);
+      setIsLoading(false);
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      const reader = response.body!.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value, { stream: true });
+        setMessages((prev) =>
+          prev.map((m) => (m.id === msgId ? { ...m, content: m.content + chunk } : m))
+        );
+      }
     } catch (err) {
       if (err instanceof Error && err.name === "AbortError") return;
       const message =
@@ -71,7 +75,7 @@ export function useChat() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [messages]);
 
   const clearChat = useCallback(() => {
     abortRef.current?.abort();
