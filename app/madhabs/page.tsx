@@ -183,11 +183,11 @@ export default function MadhabsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
-      <div className="relative hero-gradient pb-24 overflow-hidden">
+      <div className="relative hero-gradient">
         <div className="absolute inset-0 bg-arabesque opacity-[0.07] pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-60 h-60 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-8">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-8 pb-12">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-10 text-sm"
@@ -218,7 +218,7 @@ export default function MadhabsPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 -mt-12 pb-20 space-y-5">
+      <div className="max-w-4xl mx-auto px-6 pt-10 pb-20 space-y-5">
 
         {/* Madhab cards */}
         {madhabs.map((m) => (

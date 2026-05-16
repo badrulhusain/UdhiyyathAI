@@ -147,11 +147,11 @@ export default function GuidePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
-      <div className="relative hero-gradient pb-24 overflow-hidden">
+      <div className="relative hero-gradient">
         <div className="absolute inset-0 bg-arabesque opacity-[0.07] pointer-events-none" />
         <div className="absolute top-8 right-8 w-40 h-40 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-3xl mx-auto px-6 pt-8">
+        <div className="relative z-10 max-w-3xl mx-auto px-6 pt-8 pb-12">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-10 text-sm"
@@ -183,7 +183,7 @@ export default function GuidePage() {
       </div>
 
       {/* Steps */}
-      <div className="max-w-3xl mx-auto px-6 -mt-12 pb-20 space-y-5">
+      <div className="max-w-3xl mx-auto px-6 pt-10 pb-20 space-y-5">
         {steps.map(({ step, icon: Icon, title, bg, iconBg, iconColor, content, note }) => (
           <div
             key={step}
